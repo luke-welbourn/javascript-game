@@ -1,0 +1,50 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("./images/color\ background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 30px;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
+  align-self: center;
+  height: 65vh;
+  width: 65vw;
+
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(50, 61, 61);
+    font-size: 2em;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  .stats {
+    display: flex;
+    gap: 30px;
+  }
+}
