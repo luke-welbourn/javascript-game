@@ -1,3 +1,5 @@
+@use "./card";
+
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
 * {
@@ -30,25 +32,6 @@ body {
   width: 65vw;
 }
 
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(50, 61, 61);
-  font-size: 2em;
-  color: white;
-  border-radius: 10px;
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-
-  .card__side {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 .controls {
   display: flex;
   justify-content: center;
@@ -57,24 +40,5 @@ body {
   .stats {
     display: flex;
     gap: 30px;
-  }
-}
-
-.card {
-  .card__side {
-    position: absolute;
-    backface-visibility: hidden;
-
-    &--back {
-      transform: rotateY(180deg);
-    }
-  }
-
-  &.is-flipped .card__side--front {
-    transform: rotateY(180deg);
-  }
-
-  &.is-flipped .card__side--back {
-    transform: rotateY(0);
   }
 }

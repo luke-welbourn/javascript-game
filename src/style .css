@@ -1,4 +1,47 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: white;
+  border-radius: 10px;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+.card .card__side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .card__side {
+  position: absolute;
+  backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
+}
+.card .card__side--back {
+  transform: rotateY(180deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgb(50, 61, 61);
+  border-radius: 10px;
+}
+.card .card__side--front {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgb(50, 61, 61);
+  border-radius: 10px;
+}
+.card.is-flipped .card__side--front {
+  transform: rotateY(180deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card.is-flipped .card__side--back {
+  transform: rotateY(0);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -29,24 +72,6 @@ body {
   width: 65vw;
 }
 
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(50, 61, 61);
-  font-size: 2em;
-  color: white;
-  border-radius: 10px;
-  height: 100%;
-  cursor: pointer;
-  position: relative;
-}
-.card .card__side {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .controls {
   display: flex;
   justify-content: center;
@@ -56,18 +81,4 @@ body {
 .controls .stats {
   display: flex;
   gap: 30px;
-}
-
-.card .card__side {
-  position: absolute;
-  backface-visibility: hidden;
-}
-.card .card__side--back {
-  transform: rotateY(180deg);
-}
-.card.is-flipped .card__side--front {
-  transform: rotateY(180deg);
-}
-.card.is-flipped .card__side--back {
-  transform: rotateY(0);
 }/*# sourceMappingURL=style .css.map */
