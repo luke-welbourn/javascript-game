@@ -5,6 +5,17 @@ const cardContainer = document.querySelector<HTMLElement>(".board-container");
 const startButton = document.querySelector<HTMLButtonElement>(".start-button");
 const remainingFlips = document.querySelector<HTMLElement>(".remaining-flips");
 
+type stateType = {
+  gameStart: boolean;
+  cardsFlipped: number;
+  flips: number;
+};
+const boardState: stateType = {
+  gameStart: false,
+  cardsFlipped: 0,
+  flips: 0,
+};
+
 if (!cards || !startButton || !cardContainer || !remainingFlips) {
   throw new Error("what could possibly go wrong");
 }
@@ -16,8 +27,27 @@ const addCardListeners = (value: NodeListOf<HTMLElement>) => {
     card.addEventListener("click", () => {
       card.classList.toggle("is-flipped");
       boardState.flips += 1;
+      boardState.cardsFlipped += 1;
       console.log(boardState.flips);
       remainingFlips.innerText = `Flips Remaining ${20 - boardState.flips}`;
+
+      // Check if two cards have been flipped
+      if (boardState.cardsFlipped === 2) {
+        // Find the flipped cards
+        const flippedCards = document.querySelectorAll<HTMLElement>(
+          ".is-flipped"
+        ) as NodeListOf<HTMLElement>;
+
+        // Introduce a 1-second delay before removing the cards with a fade-out effect
+        setTimeout(() => {
+          flippedCards.forEach((card) => {
+            card.style.transition = "opacity 0.5s ease";
+            card.style.opacity = "0";
+            card.classList.add("deleted-card");
+          });
+        }, 1000);
+        boardState.cardsFlipped = 0;
+      }
     });
   });
 };
@@ -35,8 +65,6 @@ const shuffleArr = (value: string[]) => {
   }
   return arrCopy;
 };
-
-// console.log(shuffleArr(emojiArr));
 
 const create16Cards = () => {
   cardContainer.innerHTML = "";
@@ -71,14 +99,3 @@ const create16Cards = () => {
 startButton.addEventListener("click", create16Cards); // code for start button
 
 // good work so far, now for the game state object
-
-type stateType = {
-  gameStart: boolean;
-  cardsFlipped: number;
-  flips: number;
-};
-const boardState: stateType = {
-  gameStart: false,
-  cardsFlipped: 0,
-  flips: 0,
-};
