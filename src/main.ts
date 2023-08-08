@@ -21,32 +21,49 @@ if (!cards || !startButton || !cardContainer || !remainingFlips) {
 }
 
 // addCardListeners adds event listeners, so changes what happens when a card is pressed.
+// already becoming the largest function in the game, will need refactoring
 
 const addCardListeners = (value: NodeListOf<HTMLElement>) => {
   value.forEach((card) => {
     card.addEventListener("click", () => {
+      // adds event listener to each card containing all the following effects on click
       card.classList.toggle("is-flipped");
       boardState.flips += 1;
       boardState.cardsFlipped += 1;
       console.log(boardState.flips);
       remainingFlips.innerText = `Flips Remaining ${20 - boardState.flips}`;
 
-      // Check if two cards have been flipped
-      if (boardState.cardsFlipped === 2) {
-        // Find the flipped cards
-        const flippedCards = document.querySelectorAll<HTMLElement>(
-          ".is-flipped"
-        ) as NodeListOf<HTMLElement>;
+      const flippedCards = document.querySelectorAll(
+        ".is-flipped"
+      ) as NodeListOf<HTMLElement>;
 
-        // Introduce a 1-second delay before removing the cards with a fade-out effect
-        setTimeout(() => {
-          flippedCards.forEach((card) => {
-            card.style.transition = "opacity 0.5s ease";
-            card.style.opacity = "0";
-            card.classList.add("deleted-card");
-          });
-        }, 1000);
-        boardState.cardsFlipped = 0;
+      const firstCard = flippedCards[0];
+      const secondCard = flippedCards[1];
+
+      if (boardState.cardsFlipped === 2) {
+        // if two cards have been flipped check the following
+
+        if (firstCard.innerHTML === secondCard.innerHTML) {
+          setTimeout(() => {
+            flippedCards.forEach((card) => {
+              card.style.transition = "opacity 0.5s ease";
+              card.style.opacity = "0";
+              card.classList.add("deleted-card");
+              card.classList.remove("is-flipped");
+            });
+          }, 1500);
+          boardState.cardsFlipped = 0;
+        } else {
+          setTimeout(() => {
+            flippedCards.forEach((card) => {
+              card.classList.remove("is-flipped");
+              boardState.cardsFlipped = 0;
+            });
+          }, 1500);
+        }
+      } else {
+        boardState.cardsFlipped == 0;
+        return;
       }
     });
   });
