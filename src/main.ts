@@ -40,10 +40,11 @@ const addCardListeners = (value: NodeListOf<HTMLElement>) => {
       const firstCard = flippedCards[0];
       const secondCard = flippedCards[1];
 
-      if (boardState.cardsFlipped === 2) {
+      if (boardState.cardsFlipped >= 2) {
         // if two cards have been flipped check the following
 
         if (firstCard.innerHTML === secondCard.innerHTML) {
+          boardState.cardsFlipped = 0;
           setTimeout(() => {
             flippedCards.forEach((card) => {
               card.style.transition = "opacity 0.5s ease";
@@ -52,12 +53,13 @@ const addCardListeners = (value: NodeListOf<HTMLElement>) => {
               card.classList.remove("is-flipped");
             });
           }, 1500);
-          boardState.cardsFlipped = 0;
+          // boardState.cardsFlipped = 0;
         } else {
+          boardState.cardsFlipped = 0;
           setTimeout(() => {
             flippedCards.forEach((card) => {
               card.classList.remove("is-flipped");
-              boardState.cardsFlipped = 0;
+              // boardState.cardsFlipped = 0;
             });
           }, 1500);
         }
