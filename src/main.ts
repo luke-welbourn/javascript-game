@@ -5,20 +5,8 @@ import { addCardListeners } from "./_addCardListeners";
 const cards = document.querySelectorAll<HTMLElement>(".card");
 const cardContainer = document.querySelector<HTMLElement>(".board-container");
 const startButton = document.querySelector<HTMLButtonElement>(".start-button");
-const remainingFlips = document.querySelector<HTMLElement>(".remaining-flips");
 
-type stateType = {
-  gameStart: boolean;
-  cardsFlipped: number;
-  flips: number;
-};
-const boardState: stateType = {
-  gameStart: false,
-  cardsFlipped: 0,
-  flips: 0,
-};
-
-if (!cards || !startButton || !cardContainer || !remainingFlips) {
+if (!cards || !startButton || !cardContainer) {
   throw new Error("what could possibly go wrong");
 }
 
