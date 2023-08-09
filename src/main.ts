@@ -1,5 +1,7 @@
 import "./style .css";
 
+import { addCardListeners } from "./_addCardListeners";
+
 const cards = document.querySelectorAll<HTMLElement>(".card");
 const cardContainer = document.querySelector<HTMLElement>(".board-container");
 const startButton = document.querySelector<HTMLButtonElement>(".start-button");
@@ -19,57 +21,6 @@ const boardState: stateType = {
 if (!cards || !startButton || !cardContainer || !remainingFlips) {
   throw new Error("what could possibly go wrong");
 }
-
-// addCardListeners adds event listeners, so changes what happens when a card is pressed.
-// already becoming the largest function in the game, will need refactoring
-
-const addCardListeners = (value: NodeListOf<HTMLElement>) => {
-  value.forEach((card) => {
-    card.addEventListener("click", () => {
-      // adds event listener to each card containing all the following effects on click
-      card.classList.toggle("is-flipped");
-      boardState.flips += 1;
-      boardState.cardsFlipped += 1;
-      console.log(boardState.flips);
-      remainingFlips.innerText = `Flips Remaining ${20 - boardState.flips}`;
-
-      const flippedCards = document.querySelectorAll(
-        ".is-flipped"
-      ) as NodeListOf<HTMLElement>;
-
-      const firstCard = flippedCards[0];
-      const secondCard = flippedCards[1];
-
-      if (boardState.cardsFlipped >= 2) {
-        // if two cards have been flipped check the following
-
-        if (firstCard.innerHTML === secondCard.innerHTML) {
-          boardState.cardsFlipped = 0;
-          setTimeout(() => {
-            flippedCards.forEach((card) => {
-              card.style.transition = "opacity 0.5s ease";
-              card.style.opacity = "0";
-              card.classList.add("deleted-card");
-              card.classList.remove("is-flipped");
-            });
-          }, 1500);
-          // boardState.cardsFlipped = 0;
-        } else {
-          boardState.cardsFlipped = 0;
-          setTimeout(() => {
-            flippedCards.forEach((card) => {
-              card.classList.remove("is-flipped");
-              // boardState.cardsFlipped = 0;
-            });
-          }, 1500);
-        }
-      } else {
-        boardState.cardsFlipped == 0;
-        return;
-      }
-    });
-  });
-};
 
 // function that creates the cards for each round, must add in template literal for card icons at this stage
 
