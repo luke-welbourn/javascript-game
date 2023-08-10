@@ -4,7 +4,9 @@ import { addCardListeners } from "./_addCardListeners";
 
 import { cardCreator } from "./_createCards";
 
-import { cards, startButton } from "./_variables";
+import { cardContainer, cards, startButton } from "./_variables";
+
+import { cleanSlate } from "./cardListenerShort";
 
 // import { create16Cards } from "./_create16";
 
@@ -13,6 +15,7 @@ if (!cards || !startButton) {
 }
 
 const create16Cards = () => {
+  cleanSlate();
   cardCreator();
 
   const cards = document.querySelectorAll<HTMLElement>(".card");

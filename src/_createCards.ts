@@ -13,11 +13,9 @@ export const cardCreator = () => {
     return arrCopy;
   };
 
-  //   const cardContainer = document.querySelector<HTMLElement>(".board-container");
-
-  //   if (!cardContainer) {
-  //     throw new Error("what could possibly go wrong");
-  //   }
+  if (!cardContainer) {
+    throw new Error("what could possibly go wrong");
+  }
 
   const emojiPairs: string[] = [...emojiArr, ...emojiArr]; // create a long array of 16 emojis (paired)
   const shuffledEmojiPairs = shuffleArr(emojiPairs);

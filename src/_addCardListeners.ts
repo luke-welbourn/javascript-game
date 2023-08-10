@@ -11,14 +11,16 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
   }
 
   value.forEach((card) => {
+    // adds event listener to each card containing all the following effects on click
     card.addEventListener("click", () => {
-      // adds event listener to each card containing all the following effects on click
-
+      // code to stop uses once two cards has been picked
       if (boardState.checking == true) {
         return;
       } else {
         boardState.checking = true;
       }
+
+      //defining needed variables
 
       card.classList.add("is-flipped");
       boardState.cardsFlipped += 1;
@@ -29,6 +31,8 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
 
       const firstCard = flippedCards[0];
       const secondCard = flippedCards[1];
+
+      //defining needed variables
 
       if (boardState.cardsFlipped === 2) {
         // if two cards have been flipped check the following
