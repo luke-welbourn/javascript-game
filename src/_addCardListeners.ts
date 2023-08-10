@@ -13,20 +13,27 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
     gameStart: boolean;
     cardsFlipped: number;
     flips: number;
+    checking: boolean;
   };
   const boardState: stateType = {
     gameStart: false,
     cardsFlipped: 0,
     flips: 0,
+    checking: false,
   };
 
   value.forEach((card) => {
     card.addEventListener("click", () => {
       // adds event listener to each card containing all the following effects on click
-      card.classList.toggle("is-flipped");
+
+      if (boardState.checking == true) {
+        return;
+      } else {
+        boardState.checking = true;
+      }
+
+      card.classList.add("is-flipped");
       boardState.cardsFlipped += 1;
-      console.log(boardState.flips);
-      //   remainingFlips.innerText = `Flips Remaining ${20 - boardState.flips}`;
 
       const flippedCards = document.querySelectorAll(
         ".is-flipped"
@@ -37,7 +44,6 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
 
       if (boardState.cardsFlipped === 2) {
         // if two cards have been flipped check the following
-
         if (firstCard.innerHTML === secondCard.innerHTML) {
           boardState.cardsFlipped = 0;
           setTimeout(() => {
@@ -46,6 +52,7 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
               card.style.opacity = "0";
               card.classList.add("deleted-card");
               card.classList.remove("is-flipped");
+              boardState.checking = false;
             });
           }, 1500);
         } else {
@@ -57,11 +64,13 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
           setTimeout(() => {
             flippedCards.forEach((card) => {
               card.classList.remove("is-flipped");
+              boardState.checking = false;
             });
           }, 1500);
         }
       } else {
         boardState.cardsFlipped == 0;
+        boardState.checking = false;
         return;
       }
     });
