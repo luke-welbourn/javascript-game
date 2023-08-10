@@ -1,14 +1,11 @@
-import { deleteCorrectCards } from "./cardListenerShort";
+import { deleteCorrectCards, wrongGuess } from "./cardListenerShort";
 
-import { stateType, boardState } from "./_variables";
+import { stateType, boardState, remainingFlips } from "./_variables";
 
 // addCardListeners adds event listeners, so changes what happens when a card is pressed.
 // already becoming the largest function in the game, will need refactoring
 
 export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
-  const remainingFlips =
-    document.querySelector<HTMLElement>(".remaining-flips");
-
   if (!remainingFlips) {
     throw new Error("what could possibly go wrong");
   }
@@ -38,17 +35,7 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
         if (firstCard.innerHTML === secondCard.innerHTML) {
           deleteCorrectCards();
         } else {
-          boardState.cardsFlipped = 0;
-          boardState.flips += 2;
-          remainingFlips.innerText = `Guesses Remaining ${
-            10 - boardState.flips / 2
-          }`;
-          setTimeout(() => {
-            flippedCards.forEach((card) => {
-              card.classList.remove("is-flipped");
-              boardState.checking = false;
-            });
-          }, 1500);
+          wrongGuess();
         }
       } else {
         boardState.cardsFlipped == 0;

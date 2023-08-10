@@ -20,3 +20,6 @@ export const cardContainer =
 export const cards = document.querySelectorAll<HTMLElement>(".card");
 export const startButton =
   document.querySelector<HTMLButtonElement>(".start-button");
+
+export const remainingFlips =
+  document.querySelector<HTMLElement>(".remaining-flips");
