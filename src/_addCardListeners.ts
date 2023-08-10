@@ -1,3 +1,7 @@
+import { deleteCorrectCards } from "./cardListenerShort";
+
+import { stateType, boardState } from "./_variables";
+
 // addCardListeners adds event listeners, so changes what happens when a card is pressed.
 // already becoming the largest function in the game, will need refactoring
 
@@ -8,19 +12,6 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
   if (!remainingFlips) {
     throw new Error("what could possibly go wrong");
   }
-
-  type stateType = {
-    gameStart: boolean;
-    cardsFlipped: number;
-    flips: number;
-    checking: boolean;
-  };
-  const boardState: stateType = {
-    gameStart: false,
-    cardsFlipped: 0,
-    flips: 0,
-    checking: false,
-  };
 
   value.forEach((card) => {
     card.addEventListener("click", () => {
@@ -45,16 +36,7 @@ export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
       if (boardState.cardsFlipped === 2) {
         // if two cards have been flipped check the following
         if (firstCard.innerHTML === secondCard.innerHTML) {
-          boardState.cardsFlipped = 0;
-          setTimeout(() => {
-            flippedCards.forEach((card) => {
-              card.style.transition = "opacity 0.5s ease";
-              card.style.opacity = "0";
-              card.classList.add("deleted-card");
-              card.classList.remove("is-flipped");
-              boardState.checking = false;
-            });
-          }, 1500);
+          deleteCorrectCards();
         } else {
           boardState.cardsFlipped = 0;
           boardState.flips += 2;

@@ -4,10 +4,9 @@ import { addCardListeners } from "./_addCardListeners";
 
 import { cardCreator } from "./_createCards";
 
-// import { create16Cards } from "./_create16";
+import { cards, startButton } from "./_variables";
 
-const cards = document.querySelectorAll<HTMLElement>(".card");
-const startButton = document.querySelector<HTMLButtonElement>(".start-button");
+// import { create16Cards } from "./_create16";
 
 if (!cards || !startButton) {
   throw new Error("what could possibly go wrong");
