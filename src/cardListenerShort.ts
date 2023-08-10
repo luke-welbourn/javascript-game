@@ -21,6 +21,7 @@ export const deleteCorrectCards = () => {
     ".is-flipped"
   ) as NodeListOf<HTMLElement>;
 
+  boardState.correctGuess += 1;
   boardState.cardsFlipped = 0;
   setTimeout(() => {
     flippedCards.forEach((card) => {
@@ -53,30 +54,19 @@ export const wrongGuess = () => {
 };
 
 // Define a function to check the game state and handle end-game conditions
-const checkGameState = () => {
-  const flippedCards = document.querySelectorAll(
-    ".is-flipped"
-  ) as NodeListOf<HTMLElement>;
-
+export const checkGameState = () => {
   if (!cardContainer || !remainingFlips) {
     throw new Error("what could possibly go wrong");
   }
 
   const guessCounter = 10 - boardState.flips / 2;
   if (guessCounter <= 0) {
-    cardContainer.innerHTML = `<div class = "game-win">You Win</div>`;
-    // No more guesses remaining, the user loses
-    // You can display a losing message or perform any other actions
-    clearInterval(gameInterval); // Stop the interval since the game is over
+    cardContainer.innerHTML = `<div class = "game-loss">Game Over</div>`;
     console.log("You lose!");
   }
 
-  if (flippedCards.length === 16) {
-    cardContainer.innerHTML = `<div class = "game-loss">Game Over</div>`;
-    clearInterval(gameInterval); // Stop the interval since the game is over
+  if (boardState.correctGuess == 8) {
+    cardContainer.innerHTML = `<div class = "game-win">You Win</div>`;
     console.log("You win!");
   }
 };
-
-// Use setInterval to repeatedly call the checkGameState function every second
-const gameInterval = setInterval(checkGameState, 1000);

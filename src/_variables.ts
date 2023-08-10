@@ -4,12 +4,14 @@ export type stateType = {
   cardsFlipped: number;
   flips: number;
   checking: boolean;
+  correctGuess: number;
 };
 
 export const boardState: stateType = {
   cardsFlipped: 0,
   flips: 0,
   checking: false,
+  correctGuess: 0,
 };
 
 export const cardContainer =

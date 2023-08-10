@@ -6,7 +6,7 @@ import { cardCreator } from "./_createCards";
 
 import { cardContainer, cards, startButton } from "./_variables";
 
-import { cleanSlate } from "./cardListenerShort";
+import { cleanSlate, checkGameState } from "./cardListenerShort";
 
 // import { create16Cards } from "./_create16";
 
@@ -24,3 +24,5 @@ const create16Cards = () => {
 };
 
 startButton.addEventListener("click", create16Cards); // code for start button
+
+setInterval(checkGameState, 1000);
