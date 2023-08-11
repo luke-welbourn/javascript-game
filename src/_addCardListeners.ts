@@ -1,6 +1,6 @@
 import { deleteCorrectCards, wrongGuess } from "./cardListenerShort";
 
-import { stateType, boardState, remainingFlips } from "./_variables";
+import { boardState, remainingFlips } from "./_variables";
 
 // addCardListeners adds event listeners, so changes what happens when a card is pressed.
 // already becoming the largest function in the game, will need refactoring

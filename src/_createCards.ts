@@ -1,9 +1,14 @@
-import { cardContainer } from "./_variables";
+import { cardContainer, backup } from "./_variables";
 
 export const cardCreator = () => {
   const emojiArr: string[] = ["🌟", "🌙", "🌵", "🌸", "🍁", "🍏", "🍒", "🎉"];
 
   const shuffleArr = (value: string[]) => {
+    if (!backup) {
+      throw new Error("what could possibly go wrong");
+    }
+    backup.classList.add("board-container");
+
     const arrCopy = value;
     // Fisher-Yates shuffle to randomize the order
     for (let i = arrCopy.length - 1; i > 0; i--) {

@@ -5,6 +5,7 @@ export type stateType = {
   flips: number;
   checking: boolean;
   correctGuess: number;
+  gamesWon: number;
 };
 
 export const boardState: stateType = {
@@ -12,6 +13,7 @@ export const boardState: stateType = {
   flips: 0,
   checking: false,
   correctGuess: 0,
+  gamesWon: 0,
 };
 
 export const cardContainer =
@@ -23,3 +25,11 @@ export const startButton =
 
 export const remainingFlips =
   document.querySelector<HTMLElement>(".remaining-flips");
+
+export const gameContainer = document.querySelector<HTMLElement>(".game");
+
+export const backup = document.querySelector<HTMLElement>(
+  "#board-container__backup"
+);
+
+export const gamesWon = document.querySelector<HTMLElement>(".games-won");
