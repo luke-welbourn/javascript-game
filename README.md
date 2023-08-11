@@ -75,6 +75,28 @@ export const wrongGuess = () => {
 };
 ```
 
+- Lastly I wanted to showcase my boardState object. Originally consisting of three types: cardsFlipped, flips and correctGuess. I found that as I wanted to
+  implement more features more key-value pairs were needed. For Example gamesWon was added very late in development but was needed as an easy way to track the
+  number of games the user has won, it can then be reset when a game is lost.
+
+```typescript
+export type stateType = {
+  cardsFlipped: number;
+  flips: number;
+  checking: boolean;
+  correctGuess: number;
+  gamesWon: number;
+};
+
+export const boardState: stateType = {
+  cardsFlipped: 0,
+  flips: 0,
+  checking: false,
+  correctGuess: 0,
+  gamesWon: 0,
+};
+```
+
 ## Notes
 
 - I strived to make a game that had a solid foundation for me to work on when I have additional time. During this project I lost count of the number of times a small bug cost me an hour or two and delayed getting to additional features that I want to implement.
