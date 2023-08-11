@@ -97,6 +97,20 @@ export const boardState: stateType = {
 };
 ```
 
+## Deleted Bugs
+
+-Bug: Users could re-flip a card that was already flipped allowing them to see underneath without guessing.
+-Fix: Changed classList.toggle to classList.add.
+
+- Bug: Users could continue to click cards whilst the game was checking pairs.
+- Fix: Added "checking" boolean to boardState object which prevents event listeners acting whilst true.
+
+- Bug: Users could click a card that was already flipped, altering the boardState and preventing other cards to be clicked.
+- Fix: added a small function to check whether .is-flipped class is applied to the card being clicked and return if it does.
+
+- Bug: At the end game screen, the html was constantly being changed every second.
+- Fix: Altered checkGameState function to alter the condition that triggers it preventing infinite loop.
+
 ## Notes
 
 - I strived to make a game that had a solid foundation for me to work on when I have additional time. During this project I lost count of the number of times a small bug cost me an hour or two and delayed getting to additional features that I want to implement.
