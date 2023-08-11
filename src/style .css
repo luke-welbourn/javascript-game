@@ -51,8 +51,7 @@
 .deleted-card {
   pointer-events: none;
   opacity: 0.5;
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Add transition properties */
-  /* Add any other styles to visually indicate that the card is "deleted" or not interactable */
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 * {
@@ -129,6 +128,9 @@ body {
   height: 40px;
   width: 120px;
   font-size: 1.2em;
+}
+.start-button:hover {
+  background-color: rgb(88, 97, 97);
 }
 
 .game-loss {

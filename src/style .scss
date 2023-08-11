@@ -77,6 +77,10 @@ body {
   height: 40px;
   width: 120px;
   font-size: 1.2em;
+
+  &:hover {
+    background-color: rgb(88, 97, 97);
+  }
 }
 
 .game-loss {

@@ -3,6 +3,8 @@ import { cardContainer, backup } from "./_variables";
 export const cardCreator = () => {
   const emojiArr: string[] = ["🌟", "🌙", "🌵", "🌸", "🍁", "🍏", "🍒", "🎉"];
 
+  //function to shuffle any Arr placed inside
+
   const shuffleArr = (value: string[]) => {
     if (!backup) {
       throw new Error("what could possibly go wrong");
