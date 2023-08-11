@@ -99,8 +99,8 @@ export const boardState: stateType = {
 
 ## Deleted Bugs
 
--Bug: Users could re-flip a card that was already flipped allowing them to see underneath without guessing.
--Fix: Changed classList.toggle to classList.add.
+- Bug: Users could re-flip a card that was already flipped allowing them to see underneath without guessing.
+- Fix: Changed classList.toggle to classList.add.
 
 - Bug: Users could continue to click cards whilst the game was checking pairs.
 - Fix: Added "checking" boolean to boardState object which prevents event listeners acting whilst true.
