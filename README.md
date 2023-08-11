@@ -12,18 +12,19 @@
 
 - In this game there are a number of functions which I am proud of but I will draw your attention to addCardListeners. Though this function is still quite large it is the central hub for a number of smaller functions. I refactored this function many times. I learned how to include globally scoped variables as without them I couldn't refactor.
 
+```typescript
 export const addCardListeners = (value: NodeListOf<HTMLElement>) => {
-if (!remainingFlips) {
-throw new Error("what could possibly go wrong");
-}
+  if (!remainingFlips) {
+    throw new Error("what could possibly go wrong");
+  }
 
-value.forEach((card) => {
-card.addEventListener("click", () => {
-if (boardState.checking == true) {
-return;
-} else {
-boardState.checking = true;
-}
+  value.forEach((card) => {
+    card.addEventListener("click", () => {
+      if (boardState.checking == true) {
+        return;
+      } else {
+        boardState.checking = true;
+      }
 
       card.classList.add("is-flipped");
       boardState.cardsFlipped += 1;
@@ -47,30 +48,32 @@ boardState.checking = true;
         return;
       }
     });
-
-});
+  });
 };
+```
 
 - Another function that challenged me was wrongGuess. I had to learn how to use setTimeout to allow for transitions in the card animations. Learning the correct order of code to make sure I was using my variables correctly was also a challenge.
 
+```typescript
 export const wrongGuess = () => {
-const flippedCards = document.querySelectorAll(
-".is-flipped"
-) as NodeListOf<HTMLElement>;
+  const flippedCards = document.querySelectorAll(
+    ".is-flipped"
+  ) as NodeListOf<HTMLElement>;
 
-if (!remainingFlips) {
-throw new Error("what could possibly go wrong");
-}
-boardState.cardsFlipped = 0;
-boardState.flips += 2;
-remainingFlips.innerText = `Guesses Remaining ${10 - boardState.flips / 2}`;
-setTimeout(() => {
-flippedCards.forEach((card) => {
-card.classList.remove("is-flipped");
-boardState.checking = false;
-});
-}, 1500);
+  if (!remainingFlips) {
+    throw new Error("what could possibly go wrong");
+  }
+  boardState.cardsFlipped = 0;
+  boardState.flips += 2;
+  remainingFlips.innerText = `Guesses Remaining ${10 - boardState.flips / 2}`;
+  setTimeout(() => {
+    flippedCards.forEach((card) => {
+      card.classList.remove("is-flipped");
+      boardState.checking = false;
+    });
+  }, 1500);
 };
+```
 
 ## Notes
 
